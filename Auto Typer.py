@@ -1,10 +1,8 @@
-import pyautogui
+import pyautogui as pg
 import time
-
-
-time.sleep(10)
-
-#Copy paste whatever you want to type
-pyautogui.typewrite("""
-hey
-""",interval=0.0001)
+f = open('text.txt', 'r')
+content = f.read()
+content = content.replace("  ", "")
+time.sleep(7)
+pg.write(content)
+pg.press("enter")
