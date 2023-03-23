@@ -1,0 +1,46 @@
+#include <iostream>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+
+int main() {
+	int n; // number of employees
+	cin >> n;
+	
+	int salaries[n];
+	for (int i = 0; i < n; i++) {
+		cin >> salaries[i];
+	}
+	
+	// Find the average salary
+	double sum = 0.0;
+	for (int i = 0; i < n; i++) {
+		sum += salaries[i];
+	}
+	double average = sum / n;
+	cout <<  average << endl;
+	
+	// Find the median salary
+	sort(salaries, salaries+n);
+	double median;
+	if (n % 2 == 0) {
+		median = (salaries[n/2 - 1] + salaries[n/2]) / 2.0;
+	} else {
+		median = salaries[n/2];
+	}
+	cout <<  median << endl;
+	
+	// Find the variance in salaries
+	double variance = 0.0;
+	for (int i = 0; i < n; i++) {
+		variance += pow(salaries[i] - average, 2);
+	}
+	variance /= n;
+	cout <<  variance << endl;
+	
+	// Find the standard deviation in salaries
+	double std_dev = sqrt(variance);
+	cout <<  std_dev << endl;
+	
+	return 0;
+}
