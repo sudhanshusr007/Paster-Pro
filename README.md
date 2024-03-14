@@ -50,13 +50,6 @@ python pasterpro.py
 
 You can download the latest version of PasterPro from [here](dist/PasterPro.exe).
 
-<a id="downloadLink" href="dist/PasterPro.exe" download>Click here to download PasterPro.exe</a>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    var downloadLink = document.getElementById('downloadLink');
-    downloadLink.click();
-});
 </script>
 
 
