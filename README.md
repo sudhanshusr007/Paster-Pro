@@ -48,9 +48,7 @@ python pasterpro.py
 
 ## Download
 
-You can download the latest version of PasterPro from [here](dist/PasterPro.exe "PasterPro.exe") by clicking [this link](dist/PasterPro.exe?raw=true "PasterPro.exe").
-
-
+You can download the latest version of PasterPro from [here](dist/PasterPro.exe "PasterPro.exe").
 ## Contributing
 
 If you'd like to contribute to this project, feel free to fork the repository and submit a pull request. Contributions are always welcome!
