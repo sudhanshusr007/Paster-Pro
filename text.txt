@@ -1,31 +1,56 @@
 #include <iostream>
+#include <string>
 #include <vector>
 
 using namespace std;
 
-vector<int> minOperations(string boxes) {
-    vector<int> res(boxes.length()); 
-    for (int i = 0, ops = 0, cnt = 0; i < boxes.length(); ++i) {
-       res[i] += ops;
-       cnt += boxes[i] == '1' ? 1 : 0;
-       ops += cnt;
-    }
-    for (int i = boxes.length() - 1, ops = 0, cnt = 0; i >= 0; --i) {
-        res[i] += ops;
-        cnt += boxes[i] == '1' ? 1 : 0;
-        ops += cnt;
-    }
-    return res;
+bool isValidSegment(const string& segment) {
+if (segment.empty() || (segment.size() > 1 && segment[0] == '0') || stoi(segment) > 255) {
+return false;
+}
+return true;
+}
+
+void generateIPAddresses(const string& s, int startIndex, int segments, string current, vector<string>& result) {
+if (segments == 4) {
+if (startIndex == s.size()) {
+result.push_back(current);
+}
+return;
+}
+
+for (int i = 1; i <= 3; ++i) {
+if (startIndex + i <= s.size()) {
+string segment = s.substr(startIndex, i);
+if (isValidSegment(segment)) {
+string newCurrent = current + (segments == 0 ? "" : ".") + segment;
+generateIPAddresses(s, startIndex + i, segments + 1, newCurrent, result);
+}
+}
+}
+}
+
+vector<string> restoreIpAddresses(const string& s) {
+vector<string> result;
+generateIPAddresses(s, 0, 0, "", result);
+return result;
 }
 
 int main() {
-    string boxes = "110"; // Example input
-    vector<int> result = minOperations(boxes);
+string digits;
+cout << "Enter the string of digits: ";
+cin >> digits;
 
-    for(int i = 0; i < result.size(); ++i) {
-        cout << result[i];
-        if(i != result.size() - 1) cout << ",";
-    }
-    cout << "]" << endl;
-    return 0;
+vector<string> ipAddresses = restoreIpAddresses(digits);
+
+if (ipAddresses.empty()) {
+cout << "No valid IP addresses found." << endl;
+} else {
+    cout << "Possible IP addresses:" << endl;
+for (const string& ipAddress : ipAddresses) {
+cout << ipAddress << endl;
+}
+}
+
+return 0;
 }
