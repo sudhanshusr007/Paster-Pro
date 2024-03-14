@@ -53,6 +53,3 @@ You can download the latest version of PasterPro from [here](<download_link_here
 ## Contributing
 
 If you'd like to contribute to this project, feel free to fork the repository and submit a pull request. Contributions are always welcome!
-```
-
-This README includes the updates you requested, including GUI support, automatic installation of dependencies, humanized typing speed, and a custom speed option.
