@@ -1,6 +1,4 @@
-Certainly! Here's the updated README file:
 
-```markdown
 # PasterPro - AutoPaste Typing Tool
 
 PasterPro is a Python application that automates the typing of copied content to bypass websites where copy-paste functionality is restricted.
