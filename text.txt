@@ -1,0 +1,12 @@
+ong res = 0;
+        int pens = 0;
+                while (total >= 0) {
+                                int pencils = (total / cost2) + 1;
+                                            res += pencils;
+                                                        total -= cost1;
+                                                                    pens++;
+                }
+                        returnin() {
+                                Soluti
+                        }
+                }

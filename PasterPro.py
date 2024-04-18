@@ -1,23 +1,27 @@
 import pyautogui as pg
 import time
-import random
 
-def type_with_delay(text):
+def type_with_delay(text, delay):
     for char in text:
         pg.write(char)
-        # Introduce a shorter random delay between key presses
-        time.sleep(random.uniform(0.001, 0.05))  # Adjust the range as needed
+        time.sleep(delay)
 
 def main():
     with open('text.txt', 'r') as f:
         content = f.read()
         content = content.replace("  ", "")
 
-    # Add a delay before typing starts
-    time.sleep(7)
+    # Calculate the number of characters in the text
+    num_characters = len(content)
 
-    # Type the content with shorter random delays between key presses
-    type_with_delay(content)
+    # Set target typing speed (characters per minute)
+    target_speed = 80000000
+
+    # Calculate time per character
+    time_per_character = 0.1 / target_speed
+
+    # Type the content with the calculated delay between key presses
+    type_with_delay(content, time_per_character)
 
     # Press enter after typing is complete
     pg.press("enter")

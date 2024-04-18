@@ -1,14 +1,13 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 import pyautogui as pg
-import time
 import random
 
 def type_with_delay(text, delay):
-    for char in text:
-        pg.write(char)
-        # Introduce a delay between key presses based on the speed setting
-        time.sleep(delay)
+    if text:
+        pg.write(text[0])
+        if len(text) > 1:
+            root.after(int(delay * 1000), lambda: type_with_delay(text[1:], delay))
 
 def start_typing():
     content = text_entry.get("1.0", tk.END).strip()  # Get the content and remove leading/trailing whitespace
@@ -16,12 +15,14 @@ def start_typing():
         messagebox.showwarning("Warning", "There is nothing to print.")
         return
     speed = speed_scale.get() / 1000  # Convert speed from milliseconds to seconds
-    # Add a delay before typing starts
-    time.sleep(7)
-    # Type the content with the specified speed
-    type_with_delay(content, speed)
-    # Press enter after typing is complete
-    pg.press("enter")
+    if speed == 0:
+        pg.write(content)
+        pg.press("enter")
+    else:
+        # Add a delay before typing starts
+        root.after(7000, lambda: type_with_delay(content, speed))
+        # Press enter after typing is complete
+        root.after(int(7000 + len(content) * speed * 1000), lambda: pg.press("enter"))
 
 def humanized_speed():
     content = text_entry.get("1.0", tk.END).strip()  # Get the content and remove leading/trailing whitespace
@@ -79,8 +80,9 @@ speed_label = tk.Label(speed_frame, text="Speed:", font=("Helvetica", 12))
 speed_label.pack()
 
 # Speed scale
-speed_scale = tk.Scale(speed_frame, from_=1, to=100, orient=tk.HORIZONTAL, length=200, label="Delay (ms)", font=("Helvetica", 10))
+speed_scale = tk.Scale(speed_frame, from_=0, to=100, orient=tk.HORIZONTAL, length=200, label="Delay (ms)", font=("Helvetica", 10))
 speed_scale.set(50)  # Initial speed setting
 speed_scale.pack()
 
 root.mainloop()
+
