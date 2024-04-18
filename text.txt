@@ -1,12 +1,34 @@
-ong res = 0;
+#include <iostream>
+
+using namespace std;
+
+class Solution {
+public:
+    long long waysToBuyPensPencils(int total, int cost1, int cost2) {
+        long long res = 0;
         int pens = 0;
-                while (total >= 0) {
-                                int pencils = (total / cost2) + 1;
-                                            res += pencils;
-                                                        total -= cost1;
-                                                                    pens++;
-                }
-                        returnin() {
-                                Soluti
-                        }
-                }
+        while (total >= 0) {
+            int pencils = (total / cost2) + 1;
+            res += pencils;
+            total -= cost1;
+            pens++;
+        }
+        return res;
+    }
+};
+
+int main() {
+    Solution solution;
+    int total, cost1, cost2;
+    cout << "Enter the total amount of money: ";
+    cin >> total;
+    cout << "Enter the cost of one pen: ";
+    cin >> cost1;
+    cout << "Enter the cost of one pencil: ";
+    cin >> cost2;
+    long long ways = solution.waysToBuyPensPencils(total, cost1, cost2);
+    cout << "Number of ways to buy pens and pencils: " << ways << endl;
+    return 0;
+}
+
+
